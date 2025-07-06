@@ -1,0 +1,15 @@
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Shared/bin/Debug/net8.0/PO.Shared.deps.json
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Shared/bin/Debug/net8.0/PO.Shared.dll
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Shared/bin/Debug/net8.0/PO.Shared.pdb
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Shared/bin/Debug/net8.0/PO.Domain.dll
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Shared/bin/Debug/net8.0/PO.Domain.pdb
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Shared/obj/Debug/net8.0/PO.Shared.csproj.AssemblyReference.cache
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Shared/obj/Debug/net8.0/PO.Shared.GeneratedMSBuildEditorConfig.editorconfig
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Shared/obj/Debug/net8.0/PO.Shared.AssemblyInfoInputs.cache
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Shared/obj/Debug/net8.0/PO.Shared.AssemblyInfo.cs
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Shared/obj/Debug/net8.0/PO.Shared.csproj.CoreCompileInputs.cache
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Shared/obj/Debug/net8.0/PO.Shared.csproj.CopyComplete
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Shared/obj/Debug/net8.0/PO.Shared.dll
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Shared/obj/Debug/net8.0/refint/PO.Shared.dll
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Shared/obj/Debug/net8.0/PO.Shared.pdb
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Shared/obj/Debug/net8.0/ref/PO.Shared.dll

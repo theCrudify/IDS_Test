@@ -1,0 +1,123 @@
+// FILE LOCATION: src/PO.Application/Services/Interfaces/IMasterDataService.cs
+// DESCRIPTION: Service interface for master data operations - provides business logic layer for CRUD operations
+
+using PO.Shared.Common;
+using PO.Shared.DTOs.MasterData;
+
+namespace PO.Application.Services.Interfaces;
+
+/// <summary>
+/// Service interface for Role master data operations
+/// </summary>
+public interface IRoleService
+{
+    Task<ApiResult<IEnumerable<RoleDto>>> GetAllRolesAsync();
+    Task<ApiResult<PagedResult<RoleDto>>> GetPagedRolesAsync(PagedRequest request);
+    Task<ApiResult<RoleDto>> GetRoleByIdAsync(int id);
+    Task<ApiResult<RoleDto>> CreateRoleAsync(CreateRoleDto createRoleDto);
+    Task<ApiResult<RoleDto>> UpdateRoleAsync(int id, UpdateRoleDto updateRoleDto);
+    Task<ApiResult<bool>> DeleteRoleAsync(int id);
+    Task<ApiResult<IEnumerable<RoleLookupDto>>> GetRolesForLookupAsync();
+}
+
+/// <summary>
+/// Service interface for Department master data operations
+/// </summary>
+public interface IDepartmentService
+{
+    Task<ApiResult<IEnumerable<DepartmentDto>>> GetAllDepartmentsAsync();
+    Task<ApiResult<PagedResult<DepartmentDto>>> GetPagedDepartmentsAsync(PagedRequest request);
+    Task<ApiResult<DepartmentDto>> GetDepartmentByIdAsync(int id);
+    Task<ApiResult<DepartmentDto>> CreateDepartmentAsync(CreateDepartmentDto createDepartmentDto);
+    Task<ApiResult<DepartmentDto>> UpdateDepartmentAsync(int id, UpdateDepartmentDto updateDepartmentDto);
+    Task<ApiResult<bool>> DeleteDepartmentAsync(int id);
+    Task<ApiResult<IEnumerable<DepartmentLookupDto>>> GetDepartmentsForLookupAsync();
+}
+
+/// <summary>
+/// Service interface for User master data operations
+/// </summary>
+public interface IUserService
+{
+    Task<ApiResult<IEnumerable<UserDto>>> GetAllUsersAsync();
+    Task<ApiResult<PagedResult<UserDto>>> GetPagedUsersAsync(PagedRequest request);
+    Task<ApiResult<UserDto>> GetUserByIdAsync(int id);
+    Task<ApiResult<UserDto>> GetUserByEmployeeCodeAsync(string employeeCode);
+    Task<ApiResult<UserDto>> CreateUserAsync(CreateUserDto createUserDto);
+    Task<ApiResult<UserDto>> UpdateUserAsync(int id, UpdateUserDto updateUserDto);
+    Task<ApiResult<bool>> DeleteUserAsync(int id);
+    Task<ApiResult<IEnumerable<UserLookupDto>>> GetUsersForLookupAsync();
+    Task<ApiResult<IEnumerable<UserDto>>> GetUsersByRoleAsync(int roleId);
+    Task<ApiResult<IEnumerable<UserDto>>> GetUsersByDepartmentAsync(int deptId);
+}
+
+/// <summary>
+/// Service interface for Vendor master data operations
+/// </summary>
+public interface IVendorService
+{
+    Task<ApiResult<IEnumerable<VendorDto>>> GetAllVendorsAsync();
+    Task<ApiResult<PagedResult<VendorDto>>> GetPagedVendorsAsync(PagedRequest request);
+    Task<ApiResult<VendorDto>> GetVendorByIdAsync(string vendorId);
+    Task<ApiResult<VendorDto>> CreateVendorAsync(CreateVendorDto createVendorDto);
+    Task<ApiResult<VendorDto>> UpdateVendorAsync(string vendorId, UpdateVendorDto updateVendorDto);
+    Task<ApiResult<bool>> DeleteVendorAsync(string vendorId);
+    Task<ApiResult<IEnumerable<VendorLookupDto>>> GetVendorsForLookupAsync();
+}
+
+/// <summary>
+/// Service interface for Item master data operations
+/// </summary>
+public interface IItemService
+{
+    Task<ApiResult<IEnumerable<ItemDto>>> GetAllItemsAsync();
+    Task<ApiResult<PagedResult<ItemDto>>> GetPagedItemsAsync(PagedRequest request);
+    Task<ApiResult<ItemDto>> GetItemByCodeAsync(string itemCode);
+    Task<ApiResult<ItemDto>> CreateItemAsync(CreateItemDto createItemDto);
+    Task<ApiResult<ItemDto>> UpdateItemAsync(string itemCode, UpdateItemDto updateItemDto);
+    Task<ApiResult<bool>> DeleteItemAsync(string itemCode);
+    Task<ApiResult<IEnumerable<ItemLookupDto>>> GetItemsForLookupAsync();
+    Task<ApiResult<IEnumerable<ItemDto>>> GetItemsByTypeAsync(string itemType);
+}
+
+/// <summary>
+/// Service interface for UOM master data operations
+/// </summary>
+public interface IUOMService
+{
+    Task<ApiResult<IEnumerable<UOMDto>>> GetAllUOMsAsync();
+    Task<ApiResult<PagedResult<UOMDto>>> GetPagedUOMsAsync(PagedRequest request);
+    Task<ApiResult<UOMDto>> GetUOMByIdAsync(int id);
+    Task<ApiResult<UOMDto>> CreateUOMAsync(CreateUOMDto createUOMDto);
+    Task<ApiResult<UOMDto>> UpdateUOMAsync(int id, UpdateUOMDto updateUOMDto);
+    Task<ApiResult<bool>> DeleteUOMAsync(int id);
+    Task<ApiResult<IEnumerable<UOMLookupDto>>> GetUOMsForLookupAsync();
+}
+
+/// <summary>
+/// Service interface for Tax master data operations
+/// </summary>
+public interface ITaxService
+{
+    Task<ApiResult<IEnumerable<TaxDto>>> GetAllTaxesAsync();
+    Task<ApiResult<PagedResult<TaxDto>>> GetPagedTaxesAsync(PagedRequest request);
+    Task<ApiResult<TaxDto>> GetTaxByIdAsync(int id);
+    Task<ApiResult<TaxDto>> CreateTaxAsync(CreateTaxDto createTaxDto);
+    Task<ApiResult<TaxDto>> UpdateTaxAsync(int id, UpdateTaxDto updateTaxDto);
+    Task<ApiResult<bool>> DeleteTaxAsync(int id);
+    Task<ApiResult<IEnumerable<TaxLookupDto>>> GetTaxesForLookupAsync();
+}
+
+/// <summary>
+/// Service interface for Division master data operations
+/// </summary>
+public interface IDivisionService
+{
+    Task<ApiResult<IEnumerable<DivisionDto>>> GetAllDivisionsAsync();
+    Task<ApiResult<PagedResult<DivisionDto>>> GetPagedDivisionsAsync(PagedRequest request);
+    Task<ApiResult<DivisionDto>> GetDivisionByIdAsync(int id);
+    Task<ApiResult<DivisionDto>> CreateDivisionAsync(CreateDivisionDto createDivisionDto);
+    Task<ApiResult<DivisionDto>> UpdateDivisionAsync(int id, UpdateDivisionDto updateDivisionDto);
+    Task<ApiResult<bool>> DeleteDivisionAsync(int id);
+    Task<ApiResult<IEnumerable<DivisionLookupDto>>> GetDivisionsForLookupAsync();
+}

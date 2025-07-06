@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "SO4HzLl/8a5rG9eNVw1r90HX2E65uwedG6p6zW1kO3Vv6txaULzzCtH9PJqq8BYdQ9YU5LAiymWPdd9C0HCvxQ==",
+  "success": true,
+  "projectFilePath": "/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Domain/PO.Domain.csproj",
+  "expectedPackageFiles": [
+    "/home/jidan/.nuget/packages/system.componentmodel.annotations/5.0.0/system.componentmodel.annotations.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

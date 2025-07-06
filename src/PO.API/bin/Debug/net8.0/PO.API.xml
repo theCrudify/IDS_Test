@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PO.API</name>
+    </assembly>
+    <members>
+        <member name="T:PO.API.Controllers.BaseController">
+            <summary>
+            Base controller providing common functionality for all API controllers
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.BaseController.CreateResponse``1(PO.Shared.Common.ApiResult{``0})">
+            <summary>
+            Creates an HTTP response based on the API result
+            </summary>
+            <typeparam name="T">Type of data in the result</typeparam>
+            <param name="result">The API result</param>
+            <returns>HTTP action result</returns>
+        </member>
+        <member name="M:PO.API.Controllers.BaseController.CreateResponse(PO.Shared.Common.ApiResult)">
+            <summary>
+            Creates an HTTP response for non-generic API result
+            </summary>
+            <param name="result">The API result</param>
+            <returns>HTTP action result</returns>
+        </member>
+        <member name="M:PO.API.Controllers.BaseController.GetCurrentUserId">
+            <summary>
+            Gets the current user ID from the JWT token (when authentication is implemented)
+            </summary>
+            <returns>Current user ID</returns>
+        </member>
+        <member name="M:PO.API.Controllers.BaseController.GetCurrentUserRole">
+            <summary>
+            Gets the current user's role from the JWT token (when authentication is implemented)
+            </summary>
+            <returns>Current user's role</returns>
+        </member>
+        <member name="M:PO.API.Controllers.BaseController.ValidateModelState">
+            <summary>
+            Validates the model state and returns validation errors if any
+            </summary>
+            <returns>API result with validation errors or null if valid</returns>
+        </member>
+        <member name="M:PO.API.Controllers.BaseController.Success``1(``0,System.String)">
+            <summary>
+            Creates a success response with data
+            </summary>
+            <typeparam name="T">Type of data</typeparam>
+            <param name="data">The data to return</param>
+            <param name="message">Success message</param>
+            <returns>Success API result</returns>
+        </member>
+        <member name="M:PO.API.Controllers.BaseController.Success(System.String)">
+            <summary>
+            Creates a success response without data
+            </summary>
+            <param name="message">Success message</param>
+            <returns>Success API result</returns>
+        </member>
+        <member name="M:PO.API.Controllers.BaseController.Error(System.String,System.Int32)">
+            <summary>
+            Creates an error response
+            </summary>
+            <param name="message">Error message</param>
+            <param name="statusCode">HTTP status code</param>
+            <returns>Error API result</returns>
+        </member>
+        <member name="T:PO.API.Controllers.RolesController">
+            <summary>
+            Controller for managing Role master data
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.RolesController.GetAllRoles">
+            <summary>
+            Get all roles
+            </summary>
+            <returns>List of all roles</returns>
+            <response code="200">Returns the list of roles</response>
+            <response code="500">Internal server error</response>
+        </member>
+        <member name="M:PO.API.Controllers.RolesController.GetPagedRoles(PO.Shared.Common.PagedRequest)">
+            <summary>
+            Get roles with pagination
+            </summary>
+            <param name="request">Pagination parameters</param>
+            <returns>Paged list of roles</returns>
+            <response code="200">Returns the paged list of roles</response>
+            <response code="400">Bad request</response>
+            <response code="500">Internal server error</response>
+        </member>
+        <member name="M:PO.API.Controllers.RolesController.GetRoleById(System.Int32)">
+            <summary>
+            Get role by ID
+            </summary>
+            <param name="id">Role ID</param>
+            <returns>Role details</returns>
+            <response code="200">Returns the role</response>
+            <response code="404">Role not found</response>
+            <response code="500">Internal server error</response>
+        </member>
+        <member name="M:PO.API.Controllers.RolesController.CreateRole(PO.Shared.DTOs.MasterData.CreateRoleDto)">
+            <summary>
+            Create a new role
+            </summary>
+            <param name="createRoleDto">Role creation data</param>
+            <returns>Created role</returns>
+            <response code="201">Role created successfully</response>
+            <response code="400">Invalid input data</response>
+            <response code="409">Role with same code already exists</response>
+            <response code="500">Internal server error</response>
+        </member>
+        <member name="M:PO.API.Controllers.RolesController.UpdateRole(System.Int32,PO.Shared.DTOs.MasterData.UpdateRoleDto)">
+            <summary>
+            Update an existing role
+            </summary>
+            <param name="id">Role ID</param>
+            <param name="updateRoleDto">Role update data</param>
+            <returns>Updated role</returns>
+            <response code="200">Role updated successfully</response>
+            <response code="400">Invalid input data</response>
+            <response code="404">Role not found</response>
+            <response code="409">Role with same code already exists</response>
+            <response code="500">Internal server error</response>
+        </member>
+        <member name="M:PO.API.Controllers.RolesController.DeleteRole(System.Int32)">
+            <summary>
+            Delete a role
+            </summary>
+            <param name="id">Role ID</param>
+            <returns>Deletion result</returns>
+            <response code="200">Role deleted successfully</response>
+            <response code="404">Role not found</response>
+            <response code="409">Role cannot be deleted (has dependencies)</response>
+            <response code="500">Internal server error</response>
+        </member>
+        <member name="M:PO.API.Controllers.RolesController.GetRolesForLookup">
+            <summary>
+            Get roles for lookup/dropdown purposes
+            </summary>
+            <returns>Simplified list of roles for selection</returns>
+            <response code="200">Returns the list of roles for lookup</response>
+            <response code="500">Internal server error</response>
+        </member>
+        <member name="T:PO.API.Controllers.TestController">
+            <summary>
+            Test controller for API functionality
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.TestController.Get">
+            <summary>
+            Test endpoint to verify API is working
+            </summary>
+            <returns>Test response</returns>
+        </member>
+        <member name="M:PO.API.Controllers.TestController.Health">
+            <summary>
+            Health check endpoint
+            </summary>
+            <returns>Health status</returns>
+        </member>
+        <member name="T:PO.API.Middleware.GlobalExceptionHandlingMiddleware">
+            <summary>
+            Global exception handling middleware to catch and format all unhandled exceptions
+            </summary>
+        </member>
+    </members>
+</doc>

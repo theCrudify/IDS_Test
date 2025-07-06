@@ -1,0 +1,5 @@
+[2025-07-06 07:22:38 INF] Database connection verified {}
+[2025-07-06 07:22:38 INF] Starting Purchase Order API application {}
+[2025-07-06 07:28:03 WRN] Failed to determine the https port for redirect. {"EventId": {"Id": 3, "Name": "FailedToDeterminePort"}, "SourceContext": "Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware", "RequestId": "0HNDS4FS2SF1M:00000001", "RequestPath": "/api/test", "ConnectionId": "0HNDS4FS2SF1M"}
+[2025-07-06 07:28:03 INF] Test endpoint called {"SourceContext": "PO.API.Controllers.TestController", "ActionId": "82b8f602-09b7-413a-bc37-7e64c2e59f04", "ActionName": "PO.API.Controllers.TestController.Get (PO.API)", "RequestId": "0HNDS4FS2SF1M:00000001", "RequestPath": "/api/test", "ConnectionId": "0HNDS4FS2SF1M"}
+[2025-07-06 07:28:08 INF] Health check endpoint called {"SourceContext": "PO.API.Controllers.TestController", "ActionId": "effb7bf7-bda6-4097-a72d-f57f673e69e2", "ActionName": "PO.API.Controllers.TestController.Health (PO.API)", "RequestId": "0HNDS4FS2SF1N:00000001", "RequestPath": "/api/test/health", "ConnectionId": "0HNDS4FS2SF1N"}

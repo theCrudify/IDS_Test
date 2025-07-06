@@ -1,0 +1,23 @@
+<!-- FILE LOCATION: src/PO.Shared/PO.Shared.csproj -->
+<!-- DESCRIPTION: Shared project containing DTOs, request/response models, and common utilities -->
+
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PO.Domain\PO.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

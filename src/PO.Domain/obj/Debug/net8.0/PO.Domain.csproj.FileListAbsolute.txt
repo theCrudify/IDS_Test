@@ -1,0 +1,11 @@
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Domain/obj/Debug/net8.0/PO.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Domain/obj/Debug/net8.0/PO.Domain.AssemblyInfoInputs.cache
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Domain/obj/Debug/net8.0/PO.Domain.AssemblyInfo.cs
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Domain/obj/Debug/net8.0/PO.Domain.csproj.CoreCompileInputs.cache
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Domain/bin/Debug/net8.0/PO.Domain.deps.json
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Domain/bin/Debug/net8.0/PO.Domain.dll
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Domain/bin/Debug/net8.0/PO.Domain.pdb
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Domain/obj/Debug/net8.0/PO.Domain.dll
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Domain/obj/Debug/net8.0/refint/PO.Domain.dll
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Domain/obj/Debug/net8.0/PO.Domain.pdb
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Domain/obj/Debug/net8.0/ref/PO.Domain.dll

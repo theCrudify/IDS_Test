@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "e/uA8unVowGEnSOV4+beu6hegdLfx4lulkXQdwfhp3Ah6YGXdW8qoqElMMfkTWbABM29/EMBSq6e1w5bCeUk/A==",
+  "success": true,
+  "projectFilePath": "/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Shared/PO.Shared.csproj",
+  "expectedPackageFiles": [
+    "/home/jidan/.nuget/packages/fluentvalidation/11.9.0/fluentvalidation.11.9.0.nupkg.sha512",
+    "/home/jidan/.nuget/packages/system.componentmodel.annotations/5.0.0/system.componentmodel.annotations.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
