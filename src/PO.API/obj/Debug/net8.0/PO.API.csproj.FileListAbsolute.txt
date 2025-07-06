@@ -129,3 +129,4 @@
 /home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.API/bin/Debug/net8.0/MediatR.Extensions.Microsoft.DependencyInjection.dll
 /home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.API/bin/Debug/net8.0/PO.Application.dll
 /home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.API/bin/Debug/net8.0/PO.Application.pdb
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.API/obj/Debug/net8.0/PO.API.sourcelink.json

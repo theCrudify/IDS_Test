@@ -4,67 +4,125 @@
         <name>PO.API</name>
     </assembly>
     <members>
-        <member name="T:PO.API.Controllers.BaseController">
+        <member name="T:PO.API.Controllers.DepartmentsController">
             <summary>
-            Base controller providing common functionality for all API controllers
+            Controller for managing Department master data
             </summary>
         </member>
-        <member name="M:PO.API.Controllers.BaseController.CreateResponse``1(PO.Shared.Common.ApiResult{``0})">
+        <member name="M:PO.API.Controllers.DepartmentsController.GetAllDepartments">
             <summary>
-            Creates an HTTP response based on the API result
+            Get all departments
             </summary>
-            <typeparam name="T">Type of data in the result</typeparam>
-            <param name="result">The API result</param>
-            <returns>HTTP action result</returns>
         </member>
-        <member name="M:PO.API.Controllers.BaseController.CreateResponse(PO.Shared.Common.ApiResult)">
+        <member name="M:PO.API.Controllers.DepartmentsController.GetPagedDepartments(PO.Shared.Common.PagedRequest)">
             <summary>
-            Creates an HTTP response for non-generic API result
+            Get departments with pagination
             </summary>
-            <param name="result">The API result</param>
-            <returns>HTTP action result</returns>
         </member>
-        <member name="M:PO.API.Controllers.BaseController.GetCurrentUserId">
+        <member name="M:PO.API.Controllers.DepartmentsController.GetDepartmentById(System.Int32)">
             <summary>
-            Gets the current user ID from the JWT token (when authentication is implemented)
+            Get department by ID
             </summary>
-            <returns>Current user ID</returns>
         </member>
-        <member name="M:PO.API.Controllers.BaseController.GetCurrentUserRole">
+        <member name="M:PO.API.Controllers.DepartmentsController.CreateDepartment(PO.Shared.DTOs.MasterData.CreateDepartmentDto)">
             <summary>
-            Gets the current user's role from the JWT token (when authentication is implemented)
+            Create a new department
             </summary>
-            <returns>Current user's role</returns>
         </member>
-        <member name="M:PO.API.Controllers.BaseController.ValidateModelState">
+        <member name="M:PO.API.Controllers.DepartmentsController.UpdateDepartment(System.Int32,PO.Shared.DTOs.MasterData.UpdateDepartmentDto)">
             <summary>
-            Validates the model state and returns validation errors if any
+            Update an existing department
             </summary>
-            <returns>API result with validation errors or null if valid</returns>
         </member>
-        <member name="M:PO.API.Controllers.BaseController.Success``1(``0,System.String)">
+        <member name="M:PO.API.Controllers.DepartmentsController.DeleteDepartment(System.Int32)">
             <summary>
-            Creates a success response with data
+            Delete a department
             </summary>
-            <typeparam name="T">Type of data</typeparam>
-            <param name="data">The data to return</param>
-            <param name="message">Success message</param>
-            <returns>Success API result</returns>
         </member>
-        <member name="M:PO.API.Controllers.BaseController.Success(System.String)">
+        <member name="M:PO.API.Controllers.DepartmentsController.GetDepartmentsForLookup">
             <summary>
-            Creates a success response without data
+            Get departments for lookup/dropdown purposes
             </summary>
-            <param name="message">Success message</param>
-            <returns>Success API result</returns>
         </member>
-        <member name="M:PO.API.Controllers.BaseController.Error(System.String,System.Int32)">
+        <member name="T:PO.API.Controllers.DivisionsController">
             <summary>
-            Creates an error response
+            Controller for managing Division master data
             </summary>
-            <param name="message">Error message</param>
-            <param name="statusCode">HTTP status code</param>
-            <returns>Error API result</returns>
+        </member>
+        <member name="M:PO.API.Controllers.DivisionsController.GetAllDivisions">
+            <summary>
+            Get all divisions
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.DivisionsController.GetPagedDivisions(PO.Shared.Common.PagedRequest)">
+            <summary>
+            Get divisions with pagination
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.DivisionsController.GetDivisionById(System.Int32)">
+            <summary>
+            Get division by ID
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.DivisionsController.CreateDivision(PO.Shared.DTOs.MasterData.CreateDivisionDto)">
+            <summary>
+            Create a new division
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.DivisionsController.UpdateDivision(System.Int32,PO.Shared.DTOs.MasterData.UpdateDivisionDto)">
+            <summary>
+            Update an existing division
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.DivisionsController.DeleteDivision(System.Int32)">
+            <summary>
+            Delete a division
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.DivisionsController.GetDivisionsForLookup">
+            <summary>
+            Get divisions for lookup/dropdown purposes
+            </summary>
+        </member>
+        <member name="T:PO.API.Controllers.ItemsController">
+            <summary>
+            Controller for managing Item master data
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.ItemsController.GetAllItems">
+            <summary>
+            Get all items
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.ItemsController.GetPagedItems(PO.Shared.Common.PagedRequest)">
+            <summary>
+            Get items with pagination
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.ItemsController.GetItemById(System.Int32)">
+            <summary>
+            Get item by ID
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.ItemsController.CreateItem(PO.Shared.DTOs.MasterData.CreateItemDto)">
+            <summary>
+            Create a new item
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.ItemsController.UpdateItem(System.Int32,PO.Shared.DTOs.MasterData.UpdateItemDto)">
+            <summary>
+            Update an existing item
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.ItemsController.DeleteItem(System.Int32)">
+            <summary>
+            Delete an item
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.ItemsController.GetItemsForLookup">
+            <summary>
+            Get items for lookup/dropdown purposes
+            </summary>
         </member>
         <member name="T:PO.API.Controllers.RolesController">
             <summary>
@@ -142,6 +200,46 @@
             <response code="200">Returns the list of roles for lookup</response>
             <response code="500">Internal server error</response>
         </member>
+        <member name="T:PO.API.Controllers.TaxesController">
+            <summary>
+            Controller for managing Tax master data
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.TaxesController.GetAllTaxes">
+            <summary>
+            Get all taxes
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.TaxesController.GetPagedTaxes(PO.Shared.Common.PagedRequest)">
+            <summary>
+            Get taxes with pagination
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.TaxesController.GetTaxById(System.Int32)">
+            <summary>
+            Get tax by ID
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.TaxesController.CreateTax(PO.Shared.DTOs.MasterData.CreateTaxDto)">
+            <summary>
+            Create a new tax
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.TaxesController.UpdateTax(System.Int32,PO.Shared.DTOs.MasterData.UpdateTaxDto)">
+            <summary>
+            Update an existing tax
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.TaxesController.DeleteTax(System.Int32)">
+            <summary>
+            Delete a tax
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.TaxesController.GetTaxesForLookup">
+            <summary>
+            Get taxes for lookup/dropdown purposes
+            </summary>
+        </member>
         <member name="T:PO.API.Controllers.TestController">
             <summary>
             Test controller for API functionality
@@ -158,6 +256,198 @@
             Health check endpoint
             </summary>
             <returns>Health status</returns>
+        </member>
+        <member name="T:PO.API.Controllers.UOMsController">
+            <summary>
+            Controller for managing UOM master data
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.UOMsController.GetAllUOMs">
+            <summary>
+            Get all UOMs
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.UOMsController.GetPagedUOMs(PO.Shared.Common.PagedRequest)">
+            <summary>
+            Get UOMs with pagination
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.UOMsController.GetUOMById(System.Int32)">
+            <summary>
+            Get UOM by ID
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.UOMsController.CreateUOM(PO.Shared.DTOs.MasterData.CreateUOMDto)">
+            <summary>
+            Create a new UOM
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.UOMsController.UpdateUOM(System.Int32,PO.Shared.DTOs.MasterData.UpdateUOMDto)">
+            <summary>
+            Update an existing UOM
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.UOMsController.DeleteUOM(System.Int32)">
+            <summary>
+            Delete a UOM
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.UOMsController.GetUOMsForLookup">
+            <summary>
+            Get UOMs for lookup/dropdown purposes
+            </summary>
+        </member>
+        <member name="T:PO.API.Controllers.UsersController">
+            <summary>
+            Controller for managing User master data
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.UsersController.GetAllUsers">
+            <summary>
+            Get all users
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.UsersController.GetPagedUsers(PO.Shared.Common.PagedRequest)">
+            <summary>
+            Get users with pagination
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.UsersController.GetUserById(System.Int32)">
+            <summary>
+            Get user by ID
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.UsersController.CreateUser(PO.Shared.DTOs.MasterData.CreateUserDto)">
+            <summary>
+            Create a new user
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.UsersController.UpdateUser(System.Int32,PO.Shared.DTOs.MasterData.UpdateUserDto)">
+            <summary>
+            Update an existing user
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.UsersController.DeleteUser(System.Int32)">
+            <summary>
+            Delete a user
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.UsersController.GetUsersForLookup">
+            <summary>
+            Get users for lookup/dropdown purposes
+            </summary>
+        </member>
+        <member name="T:PO.API.Controllers.VendorsController">
+            <summary>
+            Controller for managing Vendor master data
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.VendorsController.GetAllVendors">
+            <summary>
+            Get all vendors
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.VendorsController.GetPagedVendors(PO.Shared.Common.PagedRequest)">
+            <summary>
+            Get vendors with pagination
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.VendorsController.GetVendorById(System.Int32)">
+            <summary>
+            Get vendor by ID
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.VendorsController.CreateVendor(PO.Shared.DTOs.MasterData.CreateVendorDto)">
+            <summary>
+            Create a new vendor
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.VendorsController.UpdateVendor(System.Int32,PO.Shared.DTOs.MasterData.UpdateVendorDto)">
+            <summary>
+            Update an existing vendor
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.VendorsController.DeleteVendor(System.Int32)">
+            <summary>
+            Delete a vendor
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.VendorsController.GetVendorsForLookup">
+            <summary>
+            Get vendors for lookup/dropdown purposes
+            </summary>
+        </member>
+        <member name="T:PO.API.Controllers.BaseController">
+            <summary>
+            Base controller providing common functionality for all API controllers
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.BaseController.CreateResponse``1(PO.Shared.Common.ApiResult{``0})">
+            <summary>
+            Creates an HTTP response based on the API result
+            </summary>
+            <typeparam name="T">Type of data in the result</typeparam>
+            <param name="result">The API result</param>
+            <returns>HTTP action result</returns>
+        </member>
+        <member name="M:PO.API.Controllers.BaseController.CreateResponse(PO.Shared.Common.ApiResult)">
+            <summary>
+            Creates an HTTP response for non-generic API result
+            </summary>
+            <param name="result">The API result</param>
+            <returns>HTTP action result</returns>
+        </member>
+        <member name="M:PO.API.Controllers.BaseController.GetCurrentUserId">
+            <summary>
+            Gets the current user ID from the JWT token (when authentication is implemented)
+            </summary>
+            <returns>Current user ID</returns>
+        </member>
+        <member name="M:PO.API.Controllers.BaseController.GetCurrentUserRole">
+            <summary>
+            Gets the current user's role from the JWT token (when authentication is implemented)
+            </summary>
+            <returns>Current user's role</returns>
+        </member>
+        <member name="M:PO.API.Controllers.BaseController.ValidateModelState">
+            <summary>
+            Validates the model state and returns validation errors if any
+            </summary>
+            <returns>API result with validation errors or null if valid</returns>
+        </member>
+        <member name="M:PO.API.Controllers.BaseController.Success``1(``0,System.String)">
+            <summary>
+            Creates a success response with data
+            </summary>
+            <typeparam name="T">Type of data</typeparam>
+            <param name="data">The data to return</param>
+            <param name="message">Success message</param>
+            <returns>Success API result</returns>
+        </member>
+        <member name="M:PO.API.Controllers.BaseController.Success(System.String)">
+            <summary>
+            Creates a success response without data
+            </summary>
+            <param name="message">Success message</param>
+            <returns>Success API result</returns>
+        </member>
+        <member name="M:PO.API.Controllers.BaseController.Error(System.String,System.Int32)">
+            <summary>
+            Creates an error response
+            </summary>
+            <param name="message">Error message</param>
+            <param name="statusCode">HTTP status code</param>
+            <returns>Error API result</returns>
+        </member>
+        <member name="M:PO.API.Controllers.BaseController.HandleResult``1(PO.Shared.Common.ApiResult{``0})">
+            <summary>
+            Handle result and return simple IActionResult
+            </summary>
+        </member>
+        <member name="M:PO.API.Controllers.BaseController.HandleResult(PO.Shared.Common.ApiResult)">
+            <summary>
+            Handle result and return simple IActionResult for non-generic result
+            </summary>
         </member>
         <member name="T:PO.API.Middleware.GlobalExceptionHandlingMiddleware">
             <summary>

@@ -3,6 +3,7 @@
 
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using PO.Domain.Common;
 using PO.Infrastructure.Data;
 using PO.Infrastructure.Repositories.Interfaces;
@@ -30,9 +31,29 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return await _dbSet.FindAsync(id);
     }
 
-    public virtual async Task<IEnumerable<T>> GetAllAsync()
+    public virtual async Task<IEnumerable<T>> GetAllAsync(
+        Expression<Func<T, bool>>? predicate = null,
+        Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null)
     {
-        return await _dbSet.Where(e => !((BaseEntity)(object)e).IsDeleted).ToListAsync();
+        IQueryable<T> query = _dbSet;
+
+        if (predicate != null)
+        {
+            query = query.Where(predicate);
+        }
+
+        if (include != null)
+        {
+            query = include(query);
+        }
+
+        // Apply soft delete filter if entity supports it
+        if (typeof(BaseEntity).IsAssignableFrom(typeof(T)))
+        {
+            query = query.Where(e => !((BaseEntity)(object)e).IsDeleted);
+        }
+
+        return await query.ToListAsync();
     }
 
     public virtual async Task<PagedResult<T>> GetPagedAsync(PagedRequest request)

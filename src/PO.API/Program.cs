@@ -147,9 +147,22 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 
 // Register application services
 builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IVendorService, VendorService>();
+builder.Services.AddScoped<IItemService, ItemService>();
+builder.Services.AddScoped<IUOMService, UOMService>();
+builder.Services.AddScoped<ITaxService, TaxService>();
+builder.Services.AddScoped<IDivisionService, DivisionService>();
+builder.Services.AddScoped<IPurchaseOrderService, PurchaseOrderService>();
+builder.Services.AddScoped<IApprovalService, ApprovalService>();
+builder.Services.AddScoped<INotificationService, NotificationService>();
 
 // Add health checks
 builder.Services.AddHealthChecks();
+
+// Add database initialization service
+builder.Services.AddHostedService<PO.Infrastructure.Services.DatabaseInitializationService>();
 
 var app = builder.Build();
 
@@ -180,33 +193,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.MapHealthChecks("/health");
-
-// Ensure database is created and migrated
-using (var scope = app.Services.CreateScope())
-{
-    try
-    {
-        var context = scope.ServiceProvider.GetRequiredService<PODbContext>();
-        
-        if (app.Environment.IsDevelopment())
-        {
-            // Apply migrations automatically in development
-            await context.Database.MigrateAsync();
-            Log.Information("Database migrations applied successfully");
-        }
-        else
-        {
-            // In production, just ensure database can be connected to
-            await context.Database.CanConnectAsync();
-            Log.Information("Database connection verified");
-        }
-    }
-    catch (Exception ex)
-    {
-        Log.Fatal(ex, "An error occurred while initializing the database");
-        throw;
-    }
-}
 
 Log.Information("Starting Purchase Order API application");
 

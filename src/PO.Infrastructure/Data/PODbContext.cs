@@ -114,8 +114,7 @@ public class PODbContext : DbContext
         modelBuilder.Entity<POHeader>()
             .HasOne(p => p.Vendor)
             .WithMany(v => v.PurchaseOrders)
-            .HasForeignKey(p => p.VendorId)
-            .HasPrincipalKey(v => v.VendorId)
+            .HasForeignKey(p => p.VendorIdInt)
             .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<POHeader>()
@@ -140,8 +139,7 @@ public class PODbContext : DbContext
         modelBuilder.Entity<PODetail>()
             .HasOne(pd => pd.Item)
             .WithMany(i => i.PODetails)
-            .HasForeignKey(pd => pd.ItemCode)
-            .HasPrincipalKey(i => i.ItemCode)
+            .HasForeignKey(pd => pd.ItemId)
             .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<PODetail>()
@@ -196,9 +194,9 @@ public class PODbContext : DbContext
             .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Notification>()
-            .HasOne(n => n.RelatedPO)
+            .HasOne(n => n.RelatedEntity)
             .WithMany(p => p.Notifications)
-            .HasForeignKey(n => n.RelatedPOId)
+            .HasForeignKey(n => n.RelatedEntityId)
             .OnDelete(DeleteBehavior.SetNull);
 
         // ApprovalMatrix relationships
@@ -263,15 +261,9 @@ public class PODbContext : DbContext
             .HasIndex(v => v.VendorId)
             .IsUnique();
 
-        modelBuilder.Entity<Vendor>()
-            .HasAlternateKey(v => v.VendorId);
-
         modelBuilder.Entity<Item>()
             .HasIndex(i => i.ItemCode)
             .IsUnique();
-
-        modelBuilder.Entity<Item>()
-            .HasAlternateKey(i => i.ItemCode);
 
         modelBuilder.Entity<UOM>()
             .HasIndex(u => u.UOMCode)
@@ -306,35 +298,30 @@ public class PODbContext : DbContext
     private void ConfigureConstraints(ModelBuilder modelBuilder)
     {
         // Check constraints for enum values
-        modelBuilder.Entity<POHeader>()
-            .HasCheckConstraint("CK_POHeader_Status", 
-                "Status IN (0, 1, 2, 3, 4, 5, 6)"); // POStatus enum values
+        modelBuilder.Entity<POHeader>(entity =>
+        {
+            entity.ToTable(t => t.HasCheckConstraint("CK_POHeader_Status", "Status IN (0, 1, 2, 3, 4, 5, 6)")); // POStatus enum values
+            entity.ToTable(t => t.HasCheckConstraint("CK_POHeader_TotalDue", "TotalDue >= 0"));
+        });
 
-        modelBuilder.Entity<POApprovalHistory>()
-            .HasCheckConstraint("CK_ApprovalHistory_Level", 
-                "ApprovalLevel IN (1, 2, 3)"); // ApprovalLevel enum values
-
-        modelBuilder.Entity<POApprovalHistory>()
-            .HasCheckConstraint("CK_ApprovalHistory_Status", 
-                "ApprovalStatus IN (0, 1, 2)"); // ApprovalStatus enum values
+        modelBuilder.Entity<POApprovalHistory>(entity =>
+        {
+            entity.ToTable(t => t.HasCheckConstraint("CK_ApprovalHistory_Level", "ApprovalLevel IN (1, 2, 3)")); // ApprovalLevel enum values
+            entity.ToTable(t => t.HasCheckConstraint("CK_ApprovalHistory_Status", "ApprovalStatus IN (0, 1, 2)")); // ApprovalStatus enum values
+        });
 
         // Financial constraints
-        modelBuilder.Entity<POHeader>()
-            .HasCheckConstraint("CK_POHeader_TotalDue", 
-                "TotalDue >= 0");
-
-        modelBuilder.Entity<PODetail>()
-            .HasCheckConstraint("CK_PODetail_Quantity", 
-                "Quantity > 0");
-
-        modelBuilder.Entity<PODetail>()
-            .HasCheckConstraint("CK_PODetail_UnitPrice", 
-                "UnitPrice >= 0");
+        modelBuilder.Entity<PODetail>(entity =>
+        {
+            entity.ToTable(t => t.HasCheckConstraint("CK_PODetail_Quantity", "Quantity > 0"));
+            entity.ToTable(t => t.HasCheckConstraint("CK_PODetail_UnitPrice", "UnitPrice >= 0"));
+        });
 
         // ApprovalMatrix constraints
-        modelBuilder.Entity<ApprovalMatrix>()
-            .HasCheckConstraint("CK_ApprovalMatrix_Amount", 
-                "MinAmount <= MaxAmount");
+        modelBuilder.Entity<ApprovalMatrix>(entity =>
+        {
+            entity.ToTable(t => t.HasCheckConstraint("CK_ApprovalMatrix_Amount", "MinAmount <= MaxAmount"));
+        });
     }
 
     private void SeedInitialData(ModelBuilder modelBuilder)
@@ -517,6 +504,383 @@ public class PODbContext : DbContext
                 IsActive = true,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
+            },
+            new Division
+            {
+                Id = 2,
+                DivisionCode = "PROD",
+                DivisionName = "Production Division",
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+            new Division
+            {
+                Id = 3,
+                DivisionCode = "QC",
+                DivisionName = "Quality Control Division",
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            }
+        );
+
+        // Seed Vendors
+        modelBuilder.Entity<Vendor>().HasData(
+            new Vendor
+            {
+                Id = 1,
+                VendorId = "V001",
+                VendorName = "PT. Sumber Teknik",
+                Address = "Jl. Industri No. 123, Jakarta",
+                Phone = "021-1234567",
+                Email = "sales@sumberteknik.com",
+                ContactPerson = "Budi Santoso",
+                TaxId = "01.234.567.8-901.000",
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+            new Vendor
+            {
+                Id = 2,
+                VendorId = "V002", 
+                VendorName = "CV. Maju Jaya",
+                Address = "Jl. Raya Bogor KM 15, Depok",
+                Phone = "021-7654321",
+                Email = "info@majujaya.co.id",
+                ContactPerson = "Sari Dewi",
+                TaxId = "01.234.567.8-902.000",
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+            new Vendor
+            {
+                Id = 3,
+                VendorId = "V003",
+                VendorName = "PT. Global Supplier",
+                Address = "Jl. Sudirman No. 45, Jakarta Pusat",
+                Phone = "021-9876543",
+                Email = "procurement@globalsupplier.com",
+                ContactPerson = "Ahmad Rahman",
+                TaxId = "01.234.567.8-903.000",
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            }
+        );
+
+        // Seed Items
+        modelBuilder.Entity<Item>().HasData(
+            new Item
+            {
+                Id = 1,
+                ItemCode = "ITM001",
+                ItemName = "Screw M6x20",
+                Description = "Stainless Steel Screw M6x20mm",
+                ItemType = Domain.Enums.ItemType.Barang,
+                Brand = "Fastenal",
+                Model = "M6x20",
+                Specification = "Stainless Steel 316",
+                DefaultUOMId = 1,
+                DefaultTaxId = 1,
+                StandardPrice = 500,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+            new Item
+            {
+                Id = 2,
+                ItemCode = "ITM002",
+                ItemName = "Hydraulic Oil",
+                Description = "High Performance Hydraulic Oil",
+                ItemType = Domain.Enums.ItemType.Barang,
+                Brand = "Shell",
+                Model = "Tellus S2 M46",
+                Specification = "ISO VG 46",
+                DefaultUOMId = 2,
+                DefaultTaxId = 1,
+                StandardPrice = 85000,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+            new Item
+            {
+                Id = 3,
+                ItemCode = "ITM003",
+                ItemName = "Motor Oil",
+                Description = "Engine Motor Oil SAE 15W-40",
+                ItemType = Domain.Enums.ItemType.Barang,
+                Brand = "Pertamina",
+                Model = "Mesran SAE 15W-40",
+                Specification = "API CI-4/SL",
+                DefaultUOMId = 3,
+                DefaultTaxId = 1,
+                StandardPrice = 1250000,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+            new Item
+            {
+                Id = 4,
+                ItemCode = "SRV001",
+                ItemName = "Maintenance Service",
+                Description = "Preventive maintenance service",
+                ItemType = Domain.Enums.ItemType.Jasa,
+                DefaultUOMId = 1,
+                DefaultTaxId = 1,
+                StandardPrice = 500000,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            }
+        );
+
+        // Seed Users
+        modelBuilder.Entity<User>().HasData(
+            new User
+            {
+                Id = 1,
+                EmployeeCode = "EMP001",
+                FullName = "John Doe",
+                Email = "john.doe@company.com",
+                Phone = "081234567890",
+                RoleId = 1,
+                DeptId = 3,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+            new User
+            {
+                Id = 2,
+                EmployeeCode = "EMP002",
+                FullName = "Jane Smith",
+                Email = "jane.smith@company.com",
+                Phone = "081234567891",
+                RoleId = 2,
+                DeptId = 3,
+                ManagerId = 4,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+            new User
+            {
+                Id = 3,
+                EmployeeCode = "EMP003",
+                FullName = "Mike Johnson",
+                Email = "mike.johnson@company.com",
+                Phone = "081234567892",
+                RoleId = 3,
+                DeptId = 2,
+                ManagerId = 5,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+            new User
+            {
+                Id = 4,
+                EmployeeCode = "EMP004",
+                FullName = "Sarah Wilson",
+                Email = "sarah.wilson@company.com",
+                Phone = "081234567893",
+                RoleId = 4,
+                DeptId = 3,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+            new User
+            {
+                Id = 5,
+                EmployeeCode = "EMP005",
+                FullName = "David Brown",
+                Email = "david.brown@company.com",
+                Phone = "081234567894",
+                RoleId = 5,
+                DeptId = 1,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            }
+        );
+
+        // Seed Approval Matrix
+        modelBuilder.Entity<ApprovalMatrix>().HasData(
+            new ApprovalMatrix
+            {
+                Id = 1,
+                DeptId = 3,
+                MinAmount = 0,
+                MaxAmount = 10000000,
+                CheckerRoleId = 2,
+                AcknowledgeRoleId = 3,
+                ApproverRoleId = 4,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+            new ApprovalMatrix
+            {
+                Id = 2,
+                DeptId = 3,
+                MinAmount = 10000001,
+                MaxAmount = 50000000,
+                CheckerRoleId = 2,
+                AcknowledgeRoleId = 4,
+                ApproverRoleId = 5,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+            new ApprovalMatrix
+            {
+                Id = 3,
+                DeptId = 2,
+                MinAmount = 0,
+                MaxAmount = 25000000,
+                CheckerRoleId = 2,
+                AcknowledgeRoleId = 3,
+                ApproverRoleId = 4,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            }
+        );
+
+        // Seed Sample Purchase Orders
+        modelBuilder.Entity<POHeader>().HasData(
+            new POHeader
+            {
+                Id = 1,
+                PONumber = "PO-2025-001",
+                PODate = DateTime.Now,
+                PostingDate = DateTime.Now,
+                Status = Domain.Enums.POStatus.Draft,
+                POType = Domain.Enums.POType.Local,
+                VendorIdInt = 1,
+                VendorId = "V001",
+                DeptId = 3,
+                CreatedById = 1,
+                Notes = "Purchase order for maintenance items",
+                DeliveryAddress = "Warehouse A, Jl. Gudang No. 10",
+                DeliveryDate = DateTime.Now.AddDays(7),
+                Currency = "IDR",
+                ExchangeRate = 1.0m,
+                SubTotal = 635000,
+                TaxAmount = 69850,
+                TotalDue = 704850,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+            new POHeader
+            {
+                Id = 2,
+                PONumber = "PO-2025-002",
+                PODate = DateTime.Now,
+                PostingDate = DateTime.Now,
+                Status = Domain.Enums.POStatus.PendingApprovalLevel1,
+                POType = Domain.Enums.POType.Import,
+                VendorIdInt = 2,
+                VendorId = "V002",
+                DeptId = 2,
+                CreatedById = 2,
+                Notes = "Urgent purchase for production line",
+                DeliveryAddress = "Production Floor B",
+                DeliveryDate = DateTime.Now.AddDays(14),
+                Currency = "IDR",
+                ExchangeRate = 1.0m,
+                SubTotal = 1250000,
+                TaxAmount = 137500,
+                TotalDue = 1387500,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            }
+        );
+
+        // Seed Purchase Order Details
+        modelBuilder.Entity<PODetail>().HasData(
+            new PODetail
+            {
+                Id = 1,
+                POId = 1,
+                LineNumber = 1,
+                ItemId = 1,
+                ItemCode = "ITM001",
+                ItemDescription = "Stainless Steel Screw M6x20mm",
+                Quantity = 100,
+                UOMId = 1,
+                UnitPrice = 500,
+                LineTotal = 50000,
+                TaxId = 1,
+                TaxAmount = 5500,
+                LineTotalIncludingTax = 55500,
+                DivisionId = 1,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+            new PODetail
+            {
+                Id = 2,
+                POId = 1,
+                LineNumber = 2,
+                ItemId = 2,
+                ItemCode = "ITM002",
+                ItemDescription = "High Performance Hydraulic Oil",
+                Quantity = 1,
+                UOMId = 2,
+                UnitPrice = 85000,
+                LineTotal = 85000,
+                TaxId = 1,
+                TaxAmount = 9350,
+                LineTotalIncludingTax = 94350,
+                DivisionId = 1,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+            new PODetail
+            {
+                Id = 3,
+                POId = 1,
+                LineNumber = 3,
+                ItemId = 4,
+                ItemCode = "SRV001",
+                ItemDescription = "Preventive maintenance service",
+                Quantity = 1,
+                UOMId = 1,
+                UnitPrice = 500000,
+                LineTotal = 500000,
+                TaxId = 1,
+                TaxAmount = 55000,
+                LineTotalIncludingTax = 555000,
+                DivisionId = 1,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+            new PODetail
+            {
+                Id = 4,
+                POId = 2,
+                LineNumber = 1,
+                ItemId = 3,
+                ItemCode = "ITM003",
+                ItemDescription = "Engine Motor Oil SAE 15W-40",
+                Quantity = 1,
+                UOMId = 3,
+                UnitPrice = 1250000,
+                LineTotal = 1250000,
+                TaxId = 1,
+                TaxAmount = 137500,
+                LineTotalIncludingTax = 1387500,
+                DivisionId = 2,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
             }
         );
     }
@@ -536,12 +900,12 @@ public class PODbContext : DbContext
     private void UpdateAuditFields()
     {
         var entries = ChangeTracker.Entries()
-            .Where(e => e.Entity is Domain.Common.BaseEntity && 
+            .Where(e => e.Entity is PO.Domain.Common.BaseEntity && 
                        (e.State == EntityState.Added || e.State == EntityState.Modified));
 
         foreach (var entry in entries)
         {
-            var entity = (Domain.Common.BaseEntity)entry.Entity;
+            var entity = (PO.Domain.Common.BaseEntity)entry.Entity;
 
             if (entry.State == EntityState.Added)
             {

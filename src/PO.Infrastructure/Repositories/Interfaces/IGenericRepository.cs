@@ -3,6 +3,7 @@
 
 using System.Linq.Expressions;
 using PO.Shared.Common;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace PO.Infrastructure.Repositories.Interfaces;
 
@@ -18,9 +19,12 @@ public interface IGenericRepository<T> where T : class
     Task<T?> GetByIdAsync(int id);
 
     /// <summary>
-    /// Get all entities
+    /// Get all entities matching the predicate, with optional includes
     /// </summary>
-    Task<IEnumerable<T>> GetAllAsync();
+    Task<IEnumerable<T>> GetAllAsync(
+        Expression<Func<T, bool>>? predicate = null,
+        Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null
+    );
 
     /// <summary>
     /// Get entities with pagination

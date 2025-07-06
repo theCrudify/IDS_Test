@@ -17,3 +17,4 @@
 /home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Application/obj/Debug/net8.0/refint/PO.Application.dll
 /home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Application/obj/Debug/net8.0/PO.Application.pdb
 /home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Application/obj/Debug/net8.0/ref/PO.Application.dll
+/home/jidan/Documents/GitHub/00. IDS Test/00. Purchase Order Approval/PurchaseOrderApprovalSystem/src/PO.Application/obj/Debug/net8.0/PO.Application.sourcelink.json

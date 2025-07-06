@@ -9,12 +9,14 @@ namespace PO.Domain.Enums;
 public enum POStatus
 {
     Draft = 0,
-    Submitted = 1,
-    Checking = 2,
-    Acknowledged = 3,
-    Approved = 4,
-    Rejected = 5,
-    Closed = 6
+    PendingSubmission = 1, // PO is ready to be submitted for approval
+    PendingApprovalLevel1 = 2, // Waiting for approval from the first level (e.g., Checker)
+    PendingApprovalLevel2 = 3, // Waiting for approval from the second level (e.g., Acknowledge)
+    PendingApprovalLevel3 = 4, // Waiting for approval from the third level (e.g., Approver)
+    Approved = 5,
+    Rejected = 6,
+    ReopenedForCorrection = 7, // PO was rejected and is now open for correction by the creator
+    Closed = 8
 }
 
 /// <summary>
